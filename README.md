@@ -51,7 +51,7 @@ in another terminal window
 ```
 $ roslaunch turtlebot_teleop xbox360_teleop.launch
 ```
-# 4. Start the LiDar
+# 4. Start the 3D LaserRange Finder
 Now to bringup the LaserRange Finder, use the ```hokuyo_node``` instead of ```urg_node```. To set up URG-04LX-UG01 on Kinectic for the first time, read *this*. 
 
 ```
