@@ -41,6 +41,10 @@ In another terminal window of Netbook, initate SLAM through gmapping.
 $ roslaunch turtlebot_navigation gmapping_demo.launch
 ```
 # 3. Use the gamepad for teleoperation 
+Configure joystick by following this tutorial:
+
+http://wiki.ros.org/joy/Tutorials/ConfiguringALinuxJoystick
+
 To use the joystick, initate joy node
 
 ```
