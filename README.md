@@ -84,8 +84,43 @@ Now launch the ```openni```
 ```
 roslaunch openni_launch openni.launch
 ```
+# 6. Network Configuration
 
-# 6. Visualization on Rviz 
+Before visualization set the ROS_MASTER_IP, ROS_IP, and ROS_HOSTNAME parameters in bashrc file. 
+```
+sudo nano ~/.bashrc
+```
+
+On your workstation/Laptop: 
+```
+export ROS_HOSTNAME=192.168.1.14 (Laptop's IP)
+export ROS_IP=192.168.1.14 (Laptop's IP) 
+export ROS_MASTER_URI=http://192.168.1.8:11311 (Turtlebot1's IP)
+export ROS_MASTER_URI=http://192.168.1.10:11311 (Turtlebot2's IP)
+
+```
+On Turtlebot1 (running Kinect): 
+
+```
+export ROS_MASTER_URI=http://localhost:11311 
+export ROS_HOSTNAME=192.168.1.8 (Turtlebot1's IP) 
+export TURTLEBOT_3D_SENSOR=kinect
+export TURTLEBOT_NAME= TurtlbotK
+```
+
+On Turtlebot2 (running Laser):
+```
+export ROS_MASTER_URI=http://localhost:11311 
+export ROS_HOSTNAME=192.168.1.10 (Turtlebot2's IP) 
+export TURTLEBOT_NAME=TurtlebotL 
+```
+Don't forget to source each time you edit the bashrc. 
+```
+source ~/.bashrc
+```
+
+# 7. Visualization on Rviz 
+
 
 For visualization, launch ```Rviz```
 
