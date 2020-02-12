@@ -1,0 +1,33 @@
+<launch>
+
+  <param name="robot_description"
+   command="$(find xacro)/xacro.py $(find turtlebot_description)/robots/kobuki_hexagons_asus_xtion_pro.urdf.xacro" />
+  <group ns="robot1">
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
+
+
+ <!-- BEGIN ROBOT 1-->
+ 
+  <include file="$(find turtlebot_bringup)/launch/minimal.launch">
+  </include>
+
+  <!-- *************************** Navi *************************** -->
+  <include file="$(find turtlebot_navigation)/launch/gmapping_demo.launch">
+  </include>
+
+    <!-- *************************** Teleop *************************** -->
+  <include file="$(find turtlebot_teleop)/launch/xbox360_teleop.launch">
+  </include>
+  <node pkg="joy" type="joy_node" name="ps3_joy" output="screen" >
+  <param name="dev" type="string" value="/dev/input/js0" />
+  <param name="deadzone" value="0.12" />
+  </node>
+
+    <!-- *************************** LaserScanner*************************** -->
+  <node name="hokuyo0" pkg="hokuyo_node" type="hokuyo_node">
+        <param name="port" type="string" value="/dev/ttyACM0" />
+  </node>
+  <param name="$(arg robot1_tf)/move_base/local_costmap/robot_base_frame" value="$(arg robot1_tf)/map" />
+  <node pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 /plate_middle_link /laser 1000" name="tf_static_trans" />
+  </group>
+</launch>
